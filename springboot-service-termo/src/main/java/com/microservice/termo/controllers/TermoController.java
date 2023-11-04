@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,9 @@ import com.microservice.termo.service.TermoService;
 public class TermoController {
 
 	@Autowired
+	private Environment env;
+	
+	@Autowired
 	private TermoService service;
 	
 	@Value("${server.port}")
@@ -33,7 +37,7 @@ public class TermoController {
 	@GetMapping("/list")
 	public List<Termo> list(){
 		return service.findAll().stream().map(termo ->{
-					termo.setPort(port);
+					termo.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 					return termo;
 					}).collect(Collectors.toList());
 	};

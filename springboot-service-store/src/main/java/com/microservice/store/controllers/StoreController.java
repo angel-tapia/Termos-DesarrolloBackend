@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microservice.store.models.Store;
 import com.microservice.store.models.Termo;
 import com.microservice.store.services.StoreService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 
 @RestController
@@ -25,8 +26,8 @@ public class StoreController {
 		return storeService.findAll();
 	}
 	
-	//@HystrixComand(fallbackMethod="metodoGenerico")
-	@GetMapping ("/store/{id}/cantidad/{cantidad}")
+	@HystrixCommand(fallbackMethod="metodoGenerico")
+	@GetMapping ("/termo/{id}/cantidad/{cantidad}")
 	public Store details(@PathVariable Long id, @PathVariable Integer cantidad) {
 		return storeService.findById(id, cantidad);
 	}
