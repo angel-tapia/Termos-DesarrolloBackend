@@ -40,6 +40,12 @@ public class TermoController {
 	
 	@GetMapping("/termo/{id}")
 	public Termo detail(@PathVariable Long id) {
+		
+		try {
+			Thread.sleep(2000L);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
 		return service.findById(id);
 	}
 	

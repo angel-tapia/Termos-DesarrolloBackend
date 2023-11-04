@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.store.models.Store;
+import com.microservice.store.models.Termo;
 import com.microservice.store.services.StoreService;
 
 
@@ -24,8 +25,18 @@ public class StoreController {
 		return storeService.findAll();
 	}
 	
+	//@HystrixComand(fallbackMethod="metodoGenerico")
 	@GetMapping ("/store/{id}/cantidad/{cantidad}")
 	public Store details(@PathVariable Long id, @PathVariable Integer cantidad) {
 		return storeService.findById(id, cantidad);
+	}
+	
+	public Store metodoGenerico(Long id, Integer cantidad) {
+		Store store = new Store();
+		Termo termo = new Termo(id, "mi cel angel", "iphone");
+		store.setCantidad(cantidad);
+		store.setTermo(termo);
+		
+		return store;
 	}
 }
