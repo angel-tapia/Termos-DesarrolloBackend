@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.microservice.store.models.Termo;
 
 
-@FeignClient(name = "service-termo", url = "localhost:8000")
+@FeignClient(name = "service-termo")
 public interface TermoClientFeign {
 
 	@GetMapping("/list")
