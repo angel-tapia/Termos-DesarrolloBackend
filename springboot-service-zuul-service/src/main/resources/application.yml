@@ -15,8 +15,11 @@ zuul:
     termo:
       service-id: service-termo
       path: /api/thermo/**
+    usuarios:
+      service-id: service-usuarios
+      path: /api/us/**
 ribbon:
-  ConnectTimeout: 3000
+  ConnectTimeout: 10000
   ReadTimeout: 10000
 hystrix:
   command:
@@ -24,5 +27,5 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 20000
+            timeoutInMilliseconds: 30000
             

@@ -2,9 +2,12 @@ package com.microservice.usuarios.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.*;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.microservice.usuarios.entity.*;
+import com.microservice.usuarios.entity.Usuario;
 
+
+@RepositoryRestResource(path = "usuarios")
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>{
 	
 	
