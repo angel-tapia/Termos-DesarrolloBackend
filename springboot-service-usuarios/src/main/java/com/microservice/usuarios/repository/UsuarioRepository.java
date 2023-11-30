@@ -2,7 +2,9 @@ package com.microservice.usuarios.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.microservice.usuarios.entity.Usuario;
 
@@ -12,7 +14,8 @@ public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, L
 	
 	
 	// SELECT u from Usuario  u where u.username = ?1
-	public Usuario findByUsername(String username); 
+	@RestResource(path = "buscar-username")
+	public Usuario findByUsername(@Param("nombre") String username); 
 	
 	// SELECT u from Usuario  u where u.username = ?1 and u.email = ?2
 	public Usuario findByUsernameAndEmail(String username, String email);
