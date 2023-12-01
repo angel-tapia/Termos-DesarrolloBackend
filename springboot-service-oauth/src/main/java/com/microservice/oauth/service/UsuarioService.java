@@ -45,4 +45,11 @@ public class UsuarioService implements UserDetailsService, IUsuarioService{
 		return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
 	}
 
+	@Override
+	public Usuario findByUsername(String username) {
+		return client.findByUsername(username);
+	}
+	
+	
+
 }
